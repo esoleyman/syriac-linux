@@ -63,6 +63,11 @@ case $style_script in
 esac
 
 printf "\n   Fontconfig file: %s\n" "$user_fc_dir/$user_fc_file"
+if mkdir -p "$user_fc_dir/"; then
+    printf "   [+] %s\n" "Created directory: $user_fc_dir"
+else
+    printf "   [-] %s\n" "Failed to create directory: $user_fc_dir"
+fi
 
 fc_file=`cat $basedir/$user_fc_file`
 printf "$fc_file" | sed -e "s/preferred_syriac_font/${preferred_style}/g" > "$user_fc_dir/$user_fc_file"
