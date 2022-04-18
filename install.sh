@@ -6,9 +6,8 @@
 
 basedir="${PWD}"                                # Working directory that this script resides in
 fonts_dir="$basedir/meltho-fonts"               # Meltho fonts reside here
-font_files=`ls $fonts_dir/*`                    # List of Meltho fonts
 
-user_fonts_dir="$HOME/.fonts"                   # User installed fonts directory
+user_fonts_dir="$HOME/.local/share/fonts"       # User installed fonts directory
 user_fc_dir="$HOME/.config/fontconfig/conf.d"   # User installed fontconfig directory
 user_fc_file="65-fonts-syriac.conf"             # Keep the fontconfig convention
 
@@ -53,7 +52,7 @@ printf "       3) East Syriac\n\n"
 
 printf "   Choice: "
 
-read style_script
+read -r style_script
 
 case $style_script in
     1) preferred_style=$estrangelo_font ;;
@@ -69,8 +68,8 @@ else
     printf "   [-] %s\n" "Failed to create directory: $user_fc_dir"
 fi
 
-fc_file=`cat $basedir/$user_fc_file`
-printf "$fc_file" | sed -e "s/preferred_syriac_font/${preferred_style}/g" > "$user_fc_dir/$user_fc_file"
+fc_file=$(cat "$basedir/$user_fc_file")
+printf '%s' "$fc_file" | sed -e "s/preferred_syriac_font/${preferred_style}/g" > "$user_fc_dir/$user_fc_file"
 printf "   [+] Wrote fontconfig file\n\n"
 
 
@@ -78,7 +77,7 @@ printf "   [+] Wrote fontconfig file\n\n"
 printf "3. Updating fontconfig cache\n"
 
 # Force fontconfig to update it's cache
-`fc-cache -f`
+fc-cache -f
 
 printf "\n4. Installation Complete"
 
