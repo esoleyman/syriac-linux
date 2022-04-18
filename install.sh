@@ -11,8 +11,8 @@ user_fonts_dir="$HOME/.local/share/fonts"       # User installed fonts directory
 user_fc_dir="$HOME/.config/fontconfig/conf.d"   # User installed fontconfig directory
 user_fc_file="65-fonts-syriac.conf"             # Keep the fontconfig convention
 
-estrangelo_font="Estrangelo Quenneshrin"
-serto_font="Serto Jerusalem"
+estrangelo_font="Estrangelo Edessa"
+serto_font="Serto Batnan"
 east_syriac_font="East Syriac Adiabene"
 
 
